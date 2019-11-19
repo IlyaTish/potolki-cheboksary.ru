@@ -52,6 +52,9 @@ gulp.task('html', () => {
 });
 
 gulp.task('sass', () => {
+  /* Компиляция sass файлов */
+  console.log('\n' + '* Компиляция sass файлов *');
+
   return gulp.src([
     src_assets_folder + 'sass/**/*.sass',
     src_assets_folder + 'scss/**/*.scss'
@@ -67,6 +70,9 @@ gulp.task('sass', () => {
 });
 
 gulp.task('js', () => {
+  /* Объединение и сжатие скриптов */
+  console.log('\n' + '* Объединение и сжатие скриптов *');
+
   return gulp.src([ src_assets_folder + 'js/**/*.js' ], { since: gulp.lastRun('js') })
     .pipe(plumber())
     .pipe(webpack({
@@ -84,6 +90,9 @@ gulp.task('js', () => {
 });
 
 gulp.task('images', () => {
+  /* Минификация картинок */
+  console.log('\n' + '* Минификация картинок *');
+
   return gulp.src([ src_assets_folder + 'images/**/*.+(png|jpg|jpeg|gif|svg|ico)' ], { since: gulp.lastRun('images') })
     .pipe(plumber())
     .pipe(imagemin())
@@ -112,6 +121,8 @@ gulp.task('build', gulp.series('clear', 'html', 'sass', 'js', 'images', 'vendor'
 gulp.task('dev', gulp.series('html', 'sass', 'js'));
 
 gulp.task('serve', () => {
+  /* Извлечение и отслеживание файлов из папки dist, запуск browserSync */
+  console.log('\n' + '* Извлечение и отслеживание файлов из папки dist, запуск browserSync *');
   return browserSync.init({
     server: {
       baseDir: [ 'dist' ]
