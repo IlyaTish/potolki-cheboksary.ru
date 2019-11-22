@@ -29,7 +29,7 @@ body
   height: 100%
   margin: 0
   font-size: 1.25rem
-  font-family: sans-serif
+  font-family: "Arial", sans-serif
 
 .wrapper
   display: flex
@@ -332,3 +332,32 @@ template
   display: none
 
 /* end normalize.css */
+
+$black: #1D1D1B
+
+body
+  height: 4000px
+  color: $black
+  font-size: 16px
+
+.content
+  width: 1200px
+  margin: 0 auto
+  box-sizing: border-box
+
+.btn
+  width: 200px
+  height: 36px
+  font-weight: 600
+  text-align: center
+  line-height: 36px
+  background: #FFDD00
+  border-radius: 2px
+  cursor: pointer
+  transition: .2s
+  &:hover, &:focus, &:active
+    background: darken(#FFDD00, 4%)
+
+@import '../blocks/main/main'
+@import '../blocks/calculations/calculations'
+@import '../blocks/gallery/gallery'

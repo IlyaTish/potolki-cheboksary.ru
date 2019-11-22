@@ -1,0 +1,152 @@
+.header
+  display: flex
+  justify-content: space-between
+
+  &__logo
+    width: 240px
+    margin: 40px 0 0 0
+    transform: scale(1)
+
+  &__nav
+    &-list
+      margin: 0
+      padding: 0
+      display: flex
+      justify-content: center
+
+      &__item
+        list-style: none
+
+      &__link
+        padding: 14px 8px
+        display: flex
+        font-size: 16px
+        text-transform: uppercase
+        &:after
+          width: 4px
+          height: 100%
+          content: "/"
+          display: block
+          left: 8px
+          position: relative
+
+  &__info
+    margin: 20px 0 0 0
+    text-align: right
+    font-weight: 600
+
+    &__location
+      font-size: 18px
+
+    &__phone
+      margin: 10px 0
+      font-size: 24px
+      line-height: 44px
+
+    &__text
+      font-size: 12px
+      font-weight: 600
+      text-transform: uppercase
+      line-height: 0
+
+.main
+  width: 100%
+  display: flex
+  flex-direction: column
+  justify-content: space-between
+  margin: 0 auto
+  padding: 0 20px
+  position: relative
+  background: url("../images/potolki-cheboksary-bg.jpg") #F3F3F3 center repeat-y
+  background-size: cover
+  box-sizing: border-box
+
+  &__content
+    padding: 0 0 20px 0
+
+  &__row
+    display: flex
+    justify-content: space-between
+
+  &__title
+    margin: 0
+    color: #1D1D1B
+    font-size: 72px
+    font-weight: bold
+    font-family: "Arial Black"
+    text-transform: uppercase
+    transform: scaleY(1.3)
+
+  &__p
+    margin: 14px 0 0 10px
+
+  &__img
+    top: 20px
+    position: relative
+    min-width: 190px
+    margin: 40px 80px 0 0
+
+  &__advantages
+    width: 66%
+    margin: 140px auto 0 0
+    display: flex
+    justify-content: space-between
+
+    .green
+      .main__advantages-item__num
+        background: linear-gradient(to left, #009640, #0B5E36 60%)
+      .main__advantages-item__text
+        color: #216D3A
+
+    .black
+      .main__advantages-item__num
+        background: #1D1D1B
+      .main__advantages-item__text
+        color: #1D1D1B
+
+    .red
+      .main__advantages-item__num
+        background: #BC1D20
+      .main__advantages-item__text
+        color: #BC1D20
+
+    &-item
+      margin: 0 20px 0 0
+
+      &__text-cont
+        display: inline-block
+        text-align: right
+        position: relative
+
+      &__num
+        width: 84px
+        height: 84px
+        display: flex
+        align-items: center
+        justify-content: center
+        background: gray
+        border-radius: 100%
+        top: -56px
+        left: -6px
+        position: absolute
+        span
+          right: 5px
+          position: relative
+          color: #FFF
+          font-size: 56px
+          font-family: "Impact", "Arial Black", sans-serif
+          transform: scaleY(1.2)
+
+      &__text
+        display: inline-block
+        font-size: 40px
+        font-family: "Impact", "Arial Black", sans-serif
+        text-align: right
+        text-transform: uppercase
+        line-height: 40px
+        transform: scale(1.13, 1.3)
+
+  &__btn
+    bottom: 0
+    right: 0
+    position: absolute

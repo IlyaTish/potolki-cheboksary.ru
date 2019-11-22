@@ -30,6 +30,9 @@ const gulp                      = require('gulp'),
       concat                    = require('gulp-concat'),
       imagemin                  = require('gulp-imagemin'),
       browserSync               = require('browser-sync').create(),
+      pug                       = require('gulp-pug'),
+
+      pug_folder                = './',
 
       src_folder                = './src/',
       src_assets_folder         = src_folder + 'assets/',
@@ -40,13 +43,35 @@ const gulp                      = require('gulp'),
 
       node_dependencies         = Object.keys(require('./package.json').dependencies || {});
 
-gulp.task('clear', () => del([ dist_folder ]));
+gulp.task('clear', async () => {
+  /* Удаление папки dist */
+  console.log('\n' + '* Удаление папки dist *');
+
+  const deletedPaths = await del([ dist_folder ]);
+});
 
 gulp.task('html', () => {
+  /* Сборка html файлов */
+  console.log('\n' + '* Сборка html файлов *');
+
   return gulp.src([ src_folder + '**/*.html' ], {
     base: src_folder,
     since: gulp.lastRun('html')
   })
+    .pipe(gulp.dest(dist_folder))
+    .pipe(browserSync.stream());
+});
+
+gulp.task('pug', () => {
+  /* Компиляция pug файлов */
+  console.log('\n' + '* Компиляция pug файлов *');
+
+  return gulp.src([ src_folder + '**/**/**/*.pug' ], {
+      base: src_folder,
+      since: gulp.lastRun('pug')
+    })
+    .pipe(plumber())
+    .pipe(pug())
     .pipe(gulp.dest(dist_folder))
     .pipe(browserSync.stream());
 });
@@ -69,24 +94,31 @@ gulp.task('sass', () => {
     .pipe(browserSync.stream());
 });
 
+gulp.task('cssLibs', () => {
+  /* Компиляция стилей библиотек */
+  console.log('\n' + '* Компиляция стилей библиотек *');
+
+  return gulp.src([
+    src_assets_folder + 'libs/**/*.css'
+  ], { since: gulp.lastRun('cssLibs') })
+    .pipe(plumber())
+    .pipe(minifyCss())
+    .pipe(gulp.dest(dist_assets_folder + 'css'))
+    .pipe(browserSync.stream());
+});
+
+
 gulp.task('js', () => {
   /* Объединение и сжатие скриптов */
-  console.log('\n' + '* Объединение и сжатие скриптов *');
+  console.log('\n' + '* Объединение и сжатие скриптов (старт dev) *');
 
-  return gulp.src([ src_assets_folder + 'js/**/*.js' ], { since: gulp.lastRun('js') })
-    .pipe(plumber())
-    .pipe(webpack({
-      mode: 'production'
-    }))
-    .pipe(sourcemaps.init())
-      .pipe(babel({
-        presets: [ '@babel/env' ]
-      }))
-      .pipe(concat('all.js'))
-      .pipe(uglify())
-    .pipe(sourcemaps.write('.'))
+  return gulp.src([
+      src_assets_folder + 'libs/**/*.js',
+      src_assets_folder + 'js/**/*.js'
+    ])
+    .pipe(concat('all.min.js'))
+    .pipe(uglify())
     .pipe(gulp.dest(dist_assets_folder + 'js'))
-    .pipe(browserSync.stream());
 });
 
 gulp.task('images', () => {
@@ -116,9 +148,9 @@ gulp.task('vendor', () => {
     .pipe(browserSync.stream());
 });
 
-gulp.task('build', gulp.series('clear', 'html', 'sass', 'js', 'images', 'vendor'));
+gulp.task('build', gulp.series('clear', 'html', 'pug', 'sass', 'cssLibs', 'js', 'images', 'vendor'));
 
-gulp.task('dev', gulp.series('html', 'sass', 'js'));
+gulp.task('dev', gulp.series('html', 'pug', 'sass', 'cssLibs', 'js'));
 
 gulp.task('serve', () => {
   /* Извлечение и отслеживание файлов из папки dist, запуск browserSync */
@@ -127,8 +159,7 @@ gulp.task('serve', () => {
     server: {
       baseDir: [ 'dist' ]
     },
-    port: 3000,
-    open: false
+    port: 3000
   });
 });
 
@@ -145,6 +176,7 @@ gulp.task('watch', () => {
 
   const watch = [
     src_folder + '**/*.html',
+    pug_folder + '**/**/**/*.pug',
     src_assets_folder + 'sass/**/*.sass',
     src_assets_folder + 'js/**/*.js'
   ];
