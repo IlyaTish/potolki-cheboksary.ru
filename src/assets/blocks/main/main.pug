@@ -1,13 +1,16 @@
-.main
+.main.lozad-background(data-background-image='assets/images/potolki-cheboksary-bg.jpg')
   header.header
-    img.header__logo(src='assets/images/logo.svg')
+    .burger-menu
+      span.burger-menu__elem
+
+    img.header__logo.lozad(data-src='assets/images/logo.svg')
 
     nav.header__nav
       ul.header__nav-list
         li.header__nav-list__item
-          a.header__nav-list__link окна
+          a.header__nav-list__link(href='https://oknacheb.ru/okna' target='_blank') окна
         li.header__nav-list__item
-          a.header__nav-list__link балконы
+          a.header__nav-list__link(href='https://oknacheb.ru/balkony' target='_blank') балконы
         li.header__nav-list__item
           a.header__nav-list__link о компании
         li.header__nav-list__item
@@ -15,7 +18,10 @@
 
     .header__info
       span.header__info__location Чебоксары<br>
-      span.header__info__phone 8 (8352) 38-22-38<br>
+      a.header__info__phone(href='tel:8(8352)38-22-38')
+        .phone
+          i.fas.fa-phone
+        | 8 (8352) 38-22-38<br>
       span.header__info__text Работаем по всей<br>Чувашии
 
   .main__content
@@ -23,7 +29,7 @@
     p.main__p Установка натяжных потолков в Чебоксарах, Новочебоксарске и по всей Чувашии
 
     .main__row
-      img.main__img(src='assets/images/lion.svg')
+      img.main__img.lozad(data-src='assets/images/lion.svg')
 
       .main__advantages
         .main__advantages-item
@@ -42,4 +48,4 @@
               span 1
             span.main__advantages-item__text день<br>изготовл.
 
-  a.main__btn.btn Оставить заявку
+  a.main__btn.popup-btn.btn Оставить заявку

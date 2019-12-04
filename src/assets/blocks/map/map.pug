@@ -1,0 +1,26 @@
+.map
+  h3.map__title Ждем вас в нашем офисе на Чебоксарском заливе
+
+  a.map__link(href='https://yandex.ru/maps/?um=constructor%3A368b01d953e86118ce5b503b90a3cc380452c338251d186fbd87ffeede0eac7d&source=constructorLink' target='_blank')
+    img.map__img.lozad(data-src='assets/images/map.jpg')
+  .map__cont
+    .map__address
+      .map__address__info
+        span.map__address__title Тц "Дом Мод"<br>
+        span.map__address__p ул. К. Воробьевых, 20<br>офис 512, 5 этаж
+      img.map__address__img.lozad(data-src='assets/images/Dom-Mod.jpg')
+
+    form.map__phone.form
+      <!-- Hidden Required Fields -->
+      input(type='hidden' name='project_name' value='potolki-cheboksary.ru')
+      input(type='hidden' name='admin_email' value='dukaty1013@yandex.ru')
+      input(type='hidden' name='form_subject' value='Заявка с формы на карте')
+      <!-- END Hidden Required Fields -->
+      span.map__phone__title Остались вопросы?
+      .map__phone__cont
+        .map__phone__input-cont
+          .phone
+            i.fas.fa-phone
+          input.map__phone__input.phone-input(type='text' name='Телефон' placeholder='+7 (___) ___-__-__' required)
+        button(type='submit').map__phone__btn.btn Оставить заявку
+      span.map__phone__p С вами свяжутся сразу, после отправки заявки.

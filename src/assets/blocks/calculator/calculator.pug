@@ -1,0 +1,25 @@
+.calculator
+  h2.calculator__title Калькулятор стоимости натяжного потолка
+
+  .calculator__cont
+    .calculator__left
+      .calculator__input
+        input.i1(type='number' value='3' min='3' max='40')
+        span м
+          sup 2
+
+    .calculator__center
+      span.range-min 3
+      input.calculator__input-range.r1(type='range' min='3' max='40' value='3' step='1' oninput='calc(this)')
+      span.range-max 40
+
+    .calculator__right
+      p.calculator__text.active
+        span.pricemin 7000
+        span &nbsp;-&nbsp;
+        span.pricemax 12000
+        span &nbsp;р
+      .loader
+        img(src='assets/images/preloader.gif' alt='Прелоадер')
+
+    a.popup-btn.btn Оставить заявку

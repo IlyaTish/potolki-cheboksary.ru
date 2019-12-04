@@ -1,0 +1,108 @@
+.footer
+  display: flex
+  justify-content: space-between
+  margin: 40px 0 0 0
+  padding: 20px 30px 80px 30px
+  background: $green
+  box-sizing: border-box
+  @media (max-width: 899px)
+    padding: 20px 30px 40px 30px
+    flex-direction: column
+
+  &__left
+    display: flex
+    flex-direction: column
+
+  &__logo
+    width: 140px
+    margin: 0 0 20px 0
+
+  &__text
+    color: #FFF
+    font-size: 16px
+
+  &__center
+    @media (max-width: 899px)
+      margin: 16px 0 0 0
+      border-top: 2px solid #16583C
+
+    &__img
+      width: 48px
+      margin: 0 10px 0 0
+
+    .pt
+      padding-top: 10px
+
+    &__txt-cont
+      display: flex
+      flex-direction: column
+
+    &__txt
+      color: #FFF
+      font-size: 16px
+      font-weight: 600
+      text-transform: uppercase
+      box-sizing: border-box
+      &--small
+        margin: 4px 0 0 0
+        display: inline-block
+        font-size: 12px
+        font-weight: 400
+
+  &__row
+    display: flex
+    &:last-of-type
+      margin: 26px 0 0 0
+    @media (max-width: 1199px)
+      flex-direction: column
+    @media (max-width: 899px)
+      flex-direction: row
+      .footer__col
+        &:first-of-type
+          margin: 16px 0 0 0
+    @media (max-width: 599px)
+      flex-direction: column
+
+  &__col
+    min-width: 220px
+    display: flex
+    margin: 0 0 0 26px
+    @media (max-width: 1199px)
+      margin: 26px 0 0 26px
+    @media (max-width: 599px)
+      margin: 26px 0 0 0
+
+  &__right
+    display: flex
+    flex-direction: column
+    text-align: right
+    box-sizing: border-box
+    @media (max-width: 899px)
+      padding: 20px 0 0 0
+      margin: 20px 0 0 0
+      text-align: left
+      border-top: 2px solid #16583C
+
+  &__city
+    color: #FFF
+    font-size: 20px
+    font-weight: 600
+
+  &__phone
+    display: flex
+    justify-content: flex-end
+    margin: 6px 0 0 0
+    color: #FFF
+    font-size: 20px
+    font-weight: 600
+    text-decoration: none
+    &:hover, &:focus, &:active
+      text-decoration: underline
+    @media (max-width: 899px)
+      justify-content: flex-start
+
+  &__btn
+    margin: 20px 0 0 0
+    @media (max-width: 899px)
+      height: 42px
+      line-height: 42px

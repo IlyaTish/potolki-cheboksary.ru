@@ -43,12 +43,14 @@ const gulp                      = require('gulp'),
 
       node_dependencies         = Object.keys(require('./package.json').dependencies || {});
 
+
 gulp.task('clear', async () => {
   /* Удаление папки dist */
   console.log('\n' + '* Удаление папки dist *');
 
   const deletedPaths = await del([ dist_folder ]);
 });
+
 
 gulp.task('html', () => {
   /* Сборка html файлов */
@@ -61,6 +63,7 @@ gulp.task('html', () => {
     .pipe(gulp.dest(dist_folder))
     .pipe(browserSync.stream());
 });
+
 
 gulp.task('pug', () => {
   /* Компиляция pug файлов */
@@ -75,6 +78,7 @@ gulp.task('pug', () => {
     .pipe(gulp.dest(dist_folder))
     .pipe(browserSync.stream());
 });
+
 
 gulp.task('sass', () => {
   /* Компиляция sass файлов */
@@ -94,6 +98,7 @@ gulp.task('sass', () => {
     .pipe(browserSync.stream());
 });
 
+
 gulp.task('cssLibs', () => {
   /* Компиляция стилей библиотек */
   console.log('\n' + '* Компиляция стилей библиотек *');
@@ -105,6 +110,17 @@ gulp.task('cssLibs', () => {
     .pipe(minifyCss())
     .pipe(gulp.dest(dist_assets_folder + 'css'))
     .pipe(browserSync.stream());
+});
+
+gulp.task('cssConcat', () => {
+  /* Объединение стилей */
+  console.log('\n' + '* Объединение стилей *');
+
+  return gulp.src([
+    dist_assets_folder + 'css/**/*.css'
+  ], { since: gulp.lastRun('cssConcat') })
+    .pipe(concat('all.min.css'))
+    .pipe(gulp.dest(dist_assets_folder + 'css'))
 });
 
 
@@ -121,6 +137,7 @@ gulp.task('js', () => {
     .pipe(gulp.dest(dist_assets_folder + 'js'))
 });
 
+
 gulp.task('images', () => {
   /* Минификация картинок */
   console.log('\n' + '* Минификация картинок *');
@@ -132,10 +149,24 @@ gulp.task('images', () => {
     .pipe(browserSync.stream());
 });
 
+
+gulp.task('webfonts', () => {
+  /* Сборка иконок fontawesome */
+  console.log('\n' + '* Сборка иконок fontawesome *');
+
+  return gulp
+    .src(src_assets_folder + 'webfonts/*')
+    .pipe(gulp.dest(dist_assets_folder + 'webfonts'))
+});
+
+
 gulp.task('vendor', () => {
+  /* Подтягивание зависимостей из папки node_modules */
+  console.log('\n' + '* Подтягивание зависимостей из папки node_modules *');
+
   if (node_dependencies.length === 0) {
     return new Promise((resolve) => {
-      console.log("No dependencies specified");
+      console.log('Зависимости не найдены');
       resolve();
     });
   }
@@ -148,9 +179,11 @@ gulp.task('vendor', () => {
     .pipe(browserSync.stream());
 });
 
-gulp.task('build', gulp.series('clear', 'html', 'pug', 'sass', 'cssLibs', 'js', 'images', 'vendor'));
+gulp.task('build', gulp.series('clear', async () => await console.log('\n' + '* Старт сборки папки dist *'), 'html', 'pug', 'sass', 'cssLibs', 'cssConcat', 'js', 'webfonts', 'images', 'vendor'));
 
-gulp.task('dev', gulp.series('html', 'pug', 'sass', 'cssLibs', 'js'));
+
+gulp.task('dev', gulp.series('html', 'pug', 'sass', 'cssLibs', 'cssConcat', 'js'));
+
 
 gulp.task('serve', () => {
   /* Извлечение и отслеживание файлов из папки dist, запуск browserSync */
@@ -163,9 +196,10 @@ gulp.task('serve', () => {
   });
 });
 
+
 gulp.task('watch', () => {
   const watchImages = [
-    src_assets_folder + 'images/**/*.+(png|jpg|jpeg|gif|svg|ico)'
+    src_assets_folder + 'images/**/*.+(png|jpg|jpeg|webp|gif|svg|ico)'
   ];
 
   const watchVendor = [];

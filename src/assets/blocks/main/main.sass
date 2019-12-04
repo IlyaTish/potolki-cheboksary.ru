@@ -4,8 +4,22 @@
 
   &__logo
     width: 240px
-    margin: 40px 0 0 0
+    height: 46px
+    margin: 50px 0 0 0
     transform: scale(1)
+    @media (max-width: 979px)
+      margin: 20px auto 0 30px
+    @media (max-width: 767px)
+      width: 160px
+      height: 32px
+      margin: 20px auto 0 16px
+    @media (max-width: 479px)
+      width: 120px
+      height: 24px
+    @media (max-width: 369px)
+      width: 100px
+      height: 20px
+      margin: 20px auto 0 10px
 
   &__nav
     &-list
@@ -20,8 +34,14 @@
       &__link
         padding: 14px 8px
         display: flex
+        color: $black
         font-size: 16px
         text-transform: uppercase
+        text-decoration: none
+        cursor: pointer
+        transition: .2s
+        &:hover, &:active, &:focus
+          color: $red
         &:after
           width: 4px
           height: 100%
@@ -29,25 +49,59 @@
           display: block
           left: 8px
           position: relative
+    @media (max-width: 979px)
+      display: none
 
   &__info
     margin: 20px 0 0 0
     text-align: right
     font-weight: 600
+    @media (max-width: 479px)
+      margin: 12px 0 0 0
 
     &__location
       font-size: 18px
+      @media (max-width: 599px)
+        font-size: 14px
 
     &__phone
-      margin: 10px 0
+      display: flex
+      align-items: center
+      color: $black
       font-size: 24px
       line-height: 44px
+      text-decoration: none
+      &:hover, &:active, &:focus
+        text-decoration: underline
+      .phone
+        background: #000
+        i
+          color: #FFF
+      @media (max-width: 767px)
+        font-size: 18px
+        line-height: 32px
+      @media (max-width: 599px)
+        font-size: 14px
+        line-height: 24px
+        .phone
+          min-width: 14px
+          min-height: 14px
+          max-width: 14px
+          max-height: 14px
+          i
+            font-size: 8px
+      @media (max-width: 369px)
+        line-height: 20px
+        .phone
+          margin: 0 6px 0 0
 
     &__text
       font-size: 12px
       font-weight: 600
       text-transform: uppercase
       line-height: 0
+      @media (max-width: 599px)
+        display: none
 
 .main
   width: 100%
@@ -57,12 +111,20 @@
   margin: 0 auto
   padding: 0 20px
   position: relative
-  background: url("../images/potolki-cheboksary-bg.jpg") #F3F3F3 center repeat-y
+  background-color: #F3F3F3
   background-size: cover
+  background-position: center
+  background-repeat: repeat-y
   box-sizing: border-box
+  @media (max-width: 599px)
+    padding: 0 16px
 
   &__content
     padding: 0 0 20px 0
+    @media (max-width: 979px)
+      margin: 20px 0 0 0
+    @media (max-width: 599px)
+      margin: 60px 0 0 0
 
   &__row
     display: flex
@@ -74,23 +136,50 @@
     font-size: 72px
     font-weight: bold
     font-family: "Arial Black"
+    line-height: 72px
     text-transform: uppercase
     transform: scaleY(1.3)
+    @media (max-width: 979px)
+      max-width: 500px
+      transform: none
+    @media (max-width: 767px)
+      font-size: 56px
+      line-height: 56px
+    @media (max-width: 479px)
+      font-size: 40px
+      line-height: 40px
 
   &__p
     margin: 14px 0 0 10px
+    font-size: 16px
+    @media (max-width: 979px)
+      max-width: 360px
+    @media (max-width: 767px)
+      margin: 14px 0 0 0
+    @media (max-width: 479px)
+      font-size: 14px
+      margin: 10px 0 0 0
+
 
   &__img
     top: 20px
     position: relative
     min-width: 190px
     margin: 40px 80px 0 0
+    @media (max-width: 979px)
+      display: none
 
   &__advantages
-    width: 66%
+    width: 100%
+    max-width: 700px
     margin: 140px auto 0 0
     display: flex
     justify-content: space-between
+    @media (max-width: 979px)
+      margin: 100px auto 60px 0
+    @media (max-width: 767px)
+      max-width: 360px
+      margin: 60px auto 60px 0
 
     .green
       .main__advantages-item__num
@@ -136,6 +225,22 @@
           font-size: 56px
           font-family: "Impact", "Arial Black", sans-serif
           transform: scaleY(1.2)
+        @media (max-width: 979px)
+          width: 70px
+          height: 70px
+          top: -40px
+          left: 10px
+          span
+            font-size: 46px
+        @media (max-width: 767px)
+          width: 40px
+          height: 40px
+          top: -26px
+          left: 0
+          span
+            right: 0
+            font-size: 28px
+
 
       &__text
         display: inline-block
@@ -145,6 +250,11 @@
         text-transform: uppercase
         line-height: 40px
         transform: scale(1.13, 1.3)
+        @media (max-width: 979px)
+          transform: none
+        @media (max-width: 767px)
+          font-size: 20px
+          line-height: 20px
 
   &__btn
     bottom: 0

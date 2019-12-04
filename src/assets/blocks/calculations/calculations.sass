@@ -2,31 +2,59 @@
   margin: 40px 0 0 0
   display: flex
   justify-content: space-between
+  @media (max-width: 1199px)
+    margin: 20px 0 0 0
+    flex-direction: column
 
   &__right
     width: 50%
     margin: 0 20px 0 0
     display: flex
     justify-content: space-between
+    @media (max-width: 1199px)
+      width: 100%
+      margin: 0
 
   &__left
     width: 50%
+    @media (max-width: 1199px)
+      width: 100%
 
   &__cont
     width: 100%
-    height: 260px
+    height: 280px
     padding: 20px
     position: relative
     box-sizing: border-box
     border: 1px dashed #CECECE
+    @media (max-width: 767px)
+      &--second
+        height: auto
+        padding: 20px 20px 70px 20px
 
   &__title
     margin: 0
     font-size: 24px
     text-transform: uppercase
+    &--second
+      text-transform: unset
+
+  &__subtitle
+    margin: 0
+    font-size: 16px
+
+  &__img-cont
+    width: 100%
+    max-width: 267px
+    min-width: 267px
+    position: relative
+    overflow: hidden
+    @media (max-width: 599px)
+      display: none
 
   &__img
-    width: 240px
+    width: 100%
+    height: 100%
 
   &__example
     &__title
@@ -55,17 +83,29 @@
       box-sizing: border-box
 
   &__desc
+    margin: 20px 0 0 0
     display: flex
     justify-content: space-between
-    margin: 20px 0 0 0
+    @media (max-width: 1199px)
+      max-width: 600px
+    @media (max-width: 767px)
+      flex-direction: column
 
     &-left, &-right
       display: flex
       flex-direction: column
 
+    &-right
+      @media (max-width: 767px)
+        margin: 20px 0 0 0
+
     &__p
       width: 100%
       font-size: 14px
+      @media (max-width: 767px)
+        margin: 0 0 10px 0
+        &:last-of-type
+          margin: 0
       .bold
         font-weight: 600
       .tt-u
@@ -77,3 +117,69 @@
       bottom: 0
       right: 0
       position: absolute
+
+  .calculator
+    @media (max-width: 1199px)
+      width: 100%
+      max-width: 600px
+      margin: 40px auto 0 auto
+
+    &__title
+      font-size: 16px
+      font-weight: 600
+      text-transform: uppercase
+
+    &__cont
+      @media (max-width: 767px)
+        margin: 0
+      @media (max-width: 599px)
+        flex-direction: column
+
+    &__left
+      padding: 0 0 6px 0
+      box-sizing: border-box
+
+    &__input
+      width: 26px
+      background: none
+      input
+        font-size: 16px
+      span
+        font-size: 16px
+
+    &__center
+      max-width: 340px
+
+      input[type=range]
+        height: 4px
+        @media (max-width: 767px)
+          height: 8px
+
+      input[type='range']::-webkit-slider-thumb
+        width: 16px
+        height: 16px
+        top: -2px
+        @media (max-width: 767px)
+          width: 20px
+          height: 20px
+          top: -5px
+
+      .range-min
+        min-width: 40px
+        display: flex
+        &:after
+          width: auto
+          height: 100%
+          content: "кв"
+          display: block
+          margin: 0 0 0 4px
+
+      .range-min, .range-max
+        font-size: 16px
+
+    &__right
+      min-height: 18px
+      @media (max-width: 599px)
+        margin: 20px 0 0 0
+      span
+        font-size: 16px

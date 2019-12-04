@@ -1,10 +1,18 @@
 .gallery
-  display: flex
-  justify-content: space-between
+  display: grid
+  grid-gap: 40px
+  grid-template-columns: 1fr 1fr 1fr
   margin: 40px 0 0 0
+  @media (max-width: 1199px)
+    margin: 20px 0 0 0
+  @media (max-width: 767px)
+    grid-gap: 20px
+    grid-template-columns: 1fr 1fr
+  @media (max-width: 599px)
+    grid-template-columns: 1fr
 
   &-cont
-    width: 30%
+    width: 100%
     margin-left: 0 !important
     margin-right: 0 !important
     .s2
@@ -12,3 +20,28 @@
 
     img
       width: 100%
+      height: auto
+      display: block
+
+  &__img-cont
+    height: 280px
+    min-height: 100px
+    position: relative
+
+  &__overlay
+    width: 120px
+    height: 100%
+    padding: 10px 0 0 0
+    top: 0
+    right: 0
+    position: absolute
+    text-align: center
+    box-sizing: border-box
+    background: linear-gradient(to bottom, #40AD6F, #538463)
+    opacity: 0.8
+    z-index: 9
+    span
+      color: #FFF
+      font-size: 12px
+      font-weight: 600
+      text-transform: uppercase

@@ -6,9 +6,9 @@
  */
 
 ::-webkit-scrollbar
-  width: 12px
-  background: #DEDEDE
-  border-radius: 20px
+  width: 10px
+  height: 4px
+  background: #E4E4E4
 ::-webkit-scrollbar-thumb
   background: #ADADAD
   border-radius: 20px
@@ -331,33 +331,374 @@ template
 [hidden]
   display: none
 
+
 /* end normalize.css */
 
-$black: #1D1D1B
 
-body
-  height: 4000px
+/* Variables */
+$black: #1D1D1B
+$gray: #F9F9F9
+$red: #E30613
+$green: #1A5E40
+$yellow: #FD0
+
+
+/* Common styles
+   ========================================================================== */
+
+.fw-b
+  font-weight: 600
+
+.bg-g
+  background: #DBE283 !important
+
+
+/* Phone icon */
+.phone
+  min-width: 20px
+  min-height: 20px
+  max-width: 20px
+  max-height: 20px
+  margin: 0 10px 0 0
+  display: flex
+  align-items: center
+  justify-content: center
+  background: #FFF
+  border-radius: 100%
+  i
+    color: $green
+    font-size: 12px
+
+
+.body
   color: $black
   font-size: 16px
+  &:before
+    width: 100vw
+    height: 100vh
+    content: ''
+    display: block
+    top: 0
+    left: 0
+    position: fixed
+    background: #000000a6
+    z-index: 999
+    opacity: 0
+    transition: .2s
+    pointer-events: none
+  &--active
+    &:before
+      opacity: 1
 
 .content
   width: 1200px
   margin: 0 auto
   box-sizing: border-box
+  @media (max-width: 1199px)
+    width: 100%
 
+
+/* Btn styles */
 .btn
-  width: 200px
+  min-width: 200px
   height: 36px
+  display: block
+  font-size: 14px
   font-weight: 600
   text-align: center
   line-height: 36px
   background: #FFDD00
+  border: none
   border-radius: 2px
+  position: relative
   cursor: pointer
+  overflow: hidden
+  outline: none
+  opacity: 1
   transition: .2s
-  &:hover, &:focus, &:active
-    background: darken(#FFDD00, 4%)
+  &:hover, &:focus
+    background: lighten(#FFDD00, 20%)
+  &:active
+    transform: scale(1.2)
+    transition: .1s
+  &:after
+    content: ""
+    display: block
+    width: 80px
+    height: 300px
+    margin-left: 60px
+    background: linear-gradient(to right,transparent 0,#fff 50%,transparent 100%)
+    opacity: .6
+    position: absolute
+    left: -40px
+    top: -150px
+    z-index: 1
+    -webkit-transform: rotate(45deg)
+    transform: rotate(-45deg)
+    transition: all .1s
+    -webkit-animation-name: slideme
+    animation-name: slideme
+    -webkit-animation-duration: 3s
+    animation-duration: 3s
+    -webkit-animation-delay: 50ms
+    animation-delay: 50ms
+    -webkit-animation-timing-function: eae-in-out
+    animation-timing-function: ease-in-out
+    -webkit-animation-iteration-count: infinite
+    animation-iteration-count: infinite
+  &:hover
+    box-shadow: 0 6px 8px 6px rgba(255,206,0,.43), 0 3px 0 #ffa800, inset 0 0 4px rgba(255,255,255,.97)
+
+@-webkit-keyframes slideme
+  0%
+    left: -50%
+    margin-left: 0
+  100%,30%
+    left: 110%
+    margin-left: 80px
+
+
+.burger-menu
+  width: 30px
+  height: 30px
+  margin: 26px 0 0 0
+  display: none
+  align-items: center
+  justify-content: center
+  position: relative
+  cursor: pointer
+  z-index: 999999
+  @media (max-width: 979px)
+    display: flex
+    &--active
+      .burger-menu__elem
+        display: flex
+        top: 50%
+        align-items: center
+        justify-content: center
+        background: transparent
+        transition: ease-in-out .2s
+        &:before
+          width: 20px
+          top: -1px
+          bottom: 1px
+          left: 50%
+          margin-left: -10px
+          transform: rotate(-45deg)
+        &:after
+          width: 20px
+          top: -1px
+          bottom: 1px
+          left: 50%
+          margin-left: -10px
+          transform: rotate(45deg)
+  @media (max-width: 767px)
+    margin: 20px 0 0 0
+  @media (max-width: 479px)
+    margin: 14px 0 0 0
+
+.burger-menu__elem
+  width: 18px
+  height: 2px
+  margin-left: -9px
+  display: block
+  top: 50%
+  left: 50%
+  bottom: 1px
+  position: absolute
+  background: $black
+  transition: ease-in-out .2s
+  &:before
+    width: 18px
+    height: 2px
+    content: ""
+    display: block
+    top: 5px
+    position: absolute
+    background: $black
+    transition: ease-in-out .2s
+  &:after
+    width: 18px
+    height: 2px
+    content: ""
+    display: block
+    bottom: 5px
+    position: absolute
+    background: $black
+    transition: ease-in-out .2s
+
+
+/* Swiper navigation styles */
+.nav
+  width: 40px
+  height: 40px
+  top: unset
+  bottom: 0
+  background: #C24E37
+  opacity: 0.8
+  &-prev
+    left: 0
+    &:after
+      content: "\f104"
+      color: #FFF
+      font-size: 33px
+      font-family: "Font Awesome 5 Pro"
+      opacity: 1
+  &-next
+    right: 0
+    &:after
+      content: "\f105"
+      color: #FFF
+      font-size: 33px
+      font-family: "Font Awesome 5 Pro"
+      opacity: 1
+
+
+/* Preloader */
+.cube-loader
+  align-items: center
+  display: flex
+  height: 100%
+  width: 100%
+  position: absolute
+  background: $gray
+  z-index: 9999
+  & .caption
+    margin: 0 auto
+  .cube-cont
+    width: 40px
+    height: 40px
+    margin: 0 auto
+    position: relative
+    transform: rotateZ(45deg)
+    & .cube
+      position: relative
+      transform: rotateZ(45deg)
+      width: 50%
+      height: 50%
+      float: left
+      transform: scale(1.1)
+    & .cube:before
+      content: ""
+      position: absolute
+      top: 0
+      left: 0
+      width: 100%
+      height: 100%
+      background-color: #DEDEDE
+      animation: cube-loader 2.76s infinite linear both
+      transform-origin: 100% 100%
+    & .loader-2
+      transform: scale(1.1) rotateZ(90deg)
+    & .loader-3
+      transform: scale(1.1) rotateZ(180deg)
+    & .loader-4
+      transform: scale(1.1) rotateZ(270deg)
+    & .loader-2:before
+      animation-delay: 0.35s
+    & .loader-3:before
+      animation-delay: 0.69s
+    & .loader-4:before
+      animation-delay: 1.04s
+
+@keyframes cube-loader
+  0%, 10%
+    transform: perspective(136px) rotateX(-180deg)
+    opacity: 0
+  25%, 75%
+    transform: perspective(136px) rotateX(0deg)
+    opacity: 1
+  90%, 100%
+    transform: perspective(136px) rotateY(180deg)
+    opacity: 0
+
+
+/* Calculator input styles */
+input[type='range']
+  width: 100%
+  background: #EEE
+  border: 1px solid #CCC
+  position: relative
+  -webkit-appearance: none
+  outline: transparent
+  background: -webkit-linear-gradient(left, #428bca 0%, #428bca 0%, #fff 0%, #fff 100%)
+  -webkit-border-radius: 3px
+  border-radius: 16px
+  height: 7px
+
+input[type='range']::-webkit-slider-runnable-track
+  height: 10px
+  color: #13bba4
+  margin-top: -1px
+
+input[type='range']::-webkit-slider-thumb
+  -webkit-appearance: none
+  width: 20px
+  height: 20px
+  border: 1px solid #AAA
+  background: #276147
+  -webkit-border-radius: 18px
+  border-radius: 18px
+  cursor: pointer
+  -webkit-transition: .1s
+  -o-transition: .1s
+  transition: .1s
+  position: relative
+  top: -5px
+
+input[type="range"]::-moz-range-progress
+  background-color: #43e5f7
+
+input[type="range"]::-moz-range-track
+  background-color: #9a905d
+
+input[type="range"]::-ms-fill-lower
+  background-color: #43e5f7
+
+input[type="range"]::-ms-fill-upper
+  background-color: #9a905d
+
+::-webkit-inner-spin-button
+  display: none
+
+.active
+  display: block !important
+
+.hidden
+  display: none !important
+
+
+/**
+ * Magnific popup fade transition,
+ */
+.mfp-fade.mfp-bg
+  opacity: 0
+  -webkit-transition: all 0.15s ease-out
+  -moz-transition: all 0.15s ease-out
+  transition: all 0.15s ease-out
+.mfp-fade.mfp-bg.mfp-ready
+  opacity: 0.8
+.mfp-fade.mfp-bg.mfp-removing
+  opacity: 0
+
+.mfp-fade.mfp-wrap .mfp-content
+  opacity: 0
+  -webkit-transition: all 0.15s ease-out
+  -moz-transition: all 0.15s ease-out
+  transition: all 0.15s ease-out
+.mfp-fade.mfp-wrap.mfp-ready .mfp-content
+  opacity: 1
+.mfp-fade.mfp-wrap.mfp-removing .mfp-content
+  opacity: 0
+
 
 @import '../blocks/main/main'
 @import '../blocks/calculations/calculations'
 @import '../blocks/gallery/gallery'
+@import '../blocks/reviews/reviews'
+@import '../blocks/calculator/calculator'
+@import '../blocks/articles/articles'
+@import '../blocks/table/table'
+@import '../blocks/map/map'
+@import '../blocks/popup/popup'
+@import '../blocks/footer/footer'
