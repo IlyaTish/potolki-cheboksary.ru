@@ -1,0 +1,18 @@
+.popup#popup-write.zoom-anim-dialog.mfp-hide
+  img.popup__img(src='assets/images/popup-img.jpg')
+  .popup__cont
+    span.popup__title Оставить заявку
+    form.popup__form.form
+      <!-- Hidden Required Fields -->
+      input(type='hidden' name='project_name' value='potolki-cheboksary.ru')
+      input(type='hidden' name='admin_email' value='dukaty1013@yandex.ru')
+      input(type='hidden' name='form_subject' value='Заявка с поп-ап формы')
+      <!-- END Hidden Required Fields -->
+      .popup__form-cont
+        .input-cont
+          span.popup__input-title Имя
+          input.popup__input(type='text' name='Имя' placeholder='Имя' required)
+        .input-cont
+          span.popup__input-title Сообщение
+          textarea.popup__input(name='Сообщение' placeholder='Напишите пару слов...' required)
+      button.popup__btn.btn(type='submit') Отправить

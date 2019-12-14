@@ -1,4 +1,7 @@
 jQuery(document).ready(function($) {
+
+  // ====== Swiper slider options ====== //
+
   var s1 = new Swiper ('.s1', {
     loop: true,
     grabCursor: true,
@@ -9,6 +12,7 @@ jQuery(document).ready(function($) {
       prevEl: '.s1-prev',
     }
   });
+
   var s2 = new Swiper ('.s2', {
     loop: true,
     grabCursor: true,
@@ -19,6 +23,7 @@ jQuery(document).ready(function($) {
       prevEl: '.s2-prev',
     }
   });
+
   var s3 = new Swiper ('.s3', {
     loop: true,
     grabCursor: true,
@@ -29,6 +34,7 @@ jQuery(document).ready(function($) {
       prevEl: '.s3-prev',
     }
   });
+
   var s4 = new Swiper ('.s4', {
     loop: false,
     autoplay: {
@@ -49,6 +55,84 @@ jQuery(document).ready(function($) {
       }
     }
   });
+
+  var s5 = new Swiper ('.s5', {
+    loop: false,
+    autoplay: {
+      delay: 5000
+    },
+    spaceBetween: 20,
+    slidesPerView: 1,
+    centeredSlides: true,
+    navigation: {
+      nextEl: '.s5-next',
+      prevEl: '.s5-prev',
+    },
+    breakpoints: {
+      599: {
+        slidesPerView: 'auto',
+        centeredSlides: false,
+        freeMode: true,
+        freeModeMomentumRatio: 0.1,
+        freeModeSticky: true,
+        autoplay: false
+      },
+      1199: {
+        slidesPerView: 'auto',
+        centeredSlides: false,
+        freeMode: false,
+        allowTouchMove: false,
+        autoplay: false
+      }
+    }
+  });
+
+  if ($(window).width() >= 1199) {
+    s5.destroy(true, true);
+  }
+
+
+  // ====== Teleport elements ====== //
+
+  var $window     = $(window),
+      isActive,
+
+      //Elements
+      logo         = $('.header__img-cont'),
+      mainBtn      = $('.main__btn'),
+      mapP         = $('.map__phone__p'),
+
+      //Destination
+      header       = $('.header'),
+      main         = $('.main'),
+      mainCont     = $('.main__content'),
+      phoneCont    = $('.map__phone__cont'),
+      mapForm      = $('.map__phone'),
+      calculations = $('.calculations');
+
+
+  teleportFunc();
+  $window.on('resize', teleportFunc);
+
+  function teleportFunc() {
+    var initNeeded = $window.width() < 767;
+
+    isActive = isActive !== undefined ? isActive : !initNeeded;
+
+    if (initNeeded && !isActive) {
+      logo.appendTo(mainCont).insertAfter('.main__title');
+      mainBtn.appendTo(calculations).insertBefore('.calculations__p');
+      mapP.appendTo(phoneCont).insertAfter('.map__phone__input-cont');
+      isActive = true;
+    }
+
+    if (!initNeeded && isActive) {
+      logo.appendTo(header).insertAfter('.header__nav');
+      mainBtn.appendTo(main);
+      mapP.appendTo(mapForm);
+      isActive = false;
+    }
+  }
 
 
   $('.i1').keyup(function() {
@@ -97,7 +181,8 @@ jQuery(document).ready(function($) {
   });
 
 
-  // Initialize library to lazy load images
+  // ====== Initialize library to lazy load images ====== //
+
   var observer = lozad('.lozad', {
     threshold: 0.1,
     load: function(el) {
@@ -122,13 +207,6 @@ jQuery(document).ready(function($) {
   observer.observe();
   pictureObserver.observe();
   backgroundObserver.observe();
-
-
-  $('.popup-btn').click(function(event) {
-    /* Act on the event */
-    $('body').addClass('body--active');
-    $('.popup-wrapper').addClass('popup-wrapper--active');
-  });
 
 
   /* Mask for input fields */
@@ -157,29 +235,32 @@ jQuery(document).ready(function($) {
   });
 
 
+  // ====== Magnific popup options ====== //
+
   $('.popup-youtube, .popup-vimeo, .popup-gmaps').magnificPopup({
     disableOn: 700,
     type: 'iframe',
     mainClass: 'mfp-fade',
     removalDelay: 160,
     preloader: false,
-    fixedContentPos: false
+    fixedContentPos: true
   });
-});
 
+  $('.popup-with-move-anim').magnificPopup({
+    type: 'inline',
 
-$('.popup__close').click(function(event) {
-  /* Act on the event */
-  $('body').removeClass('body--active');
-  $('.popup-wrapper').removeClass('popup-wrapper--active');
-});
+    fixedContentPos: false,
+    fixedBgPos: true,
 
-$(document).mouseup(function(e) {
-  var div = $('.popup-wrapper .popup');
-  if (!div.is(e.target) && div.has(e.target).length === 0) {
-    $('body').removeClass('body--active');
-    $('.popup-wrapper').removeClass('popup-wrapper--active');
-  }
+    overflowY: 'auto',
+
+    closeBtnInside: true,
+    preloader: false,
+
+    midClick: true,
+    removalDelay: 300,
+    mainClass: 'my-mfp-slide-bottom'
+  });
 });
 
 

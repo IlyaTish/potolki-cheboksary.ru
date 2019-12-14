@@ -6,6 +6,34 @@
     margin: 20px 0 0 0
     flex-direction: column
 
+  &__p
+    width: 100%
+    margin: 0 0 20px 0
+    display: none
+    color: $black
+    font-weight: 600
+    font-size: 16px
+    text-align: center
+    @media (max-width: 767px)
+      display: inline-block
+
+  .square
+    &:before
+      width: 10px
+      height: 10px
+      content: ""
+      display: block
+      margin: 0 10px 0 0
+      top: 7px
+      position: relative
+      background: lighten($green, 14%)
+    &--large
+      &:before
+        width: 18px
+        height: 18px
+        top: 4px
+        right: 4px
+
   &__right
     width: 50%
     margin: 0 20px 0 0
@@ -14,11 +42,15 @@
     @media (max-width: 1199px)
       width: 100%
       margin: 0
+    @media (max-width: 599px)
+      flex-direction: column
 
   &__left
     width: 50%
     @media (max-width: 1199px)
       width: 100%
+    @media (max-width: 599px)
+      display: none
 
   &__cont
     width: 100%
@@ -34,14 +66,22 @@
 
   &__title
     margin: 0
+    display: flex
     font-size: 24px
     text-transform: uppercase
     &--second
       text-transform: unset
 
   &__subtitle
-    margin: 0
-    font-size: 16px
+    margin: 20px 0 0 0
+    font-size: 22px
+    .red
+      color: #E25125
+      font-size: 34px
+      font-weight: 600
+      line-height: 26px
+      bottom: 4px
+      position: relative
 
   &__img-cont
     width: 100%
@@ -50,7 +90,7 @@
     position: relative
     overflow: hidden
     @media (max-width: 599px)
-      display: none
+      margin: 0 auto 20px auto
 
   &__img
     width: 100%
@@ -78,108 +118,33 @@
       color: #FFF
       font-size: 16px
       line-height: 36px
+      text-decoration: none
       background: #004B2F
       border-radius: 2px
       box-sizing: border-box
+      position: relative
+      cursor: pointer
+      transition: .2s
+      &:hover, &:focus
+        background: darken(#004B2F, 5%)
+      &:active
+        top: 2px
 
   &__desc
-    margin: 20px 0 0 0
+    margin: 4px 0 0 0
     display: flex
+    flex-direction: column
     justify-content: space-between
-    @media (max-width: 1199px)
-      max-width: 600px
-    @media (max-width: 767px)
-      flex-direction: column
-
-    &-left, &-right
-      display: flex
-      flex-direction: column
-
-    &-right
-      @media (max-width: 767px)
-        margin: 20px 0 0 0
 
     &__p
       width: 100%
-      font-size: 14px
-      @media (max-width: 767px)
-        margin: 0 0 10px 0
-        &:last-of-type
-          margin: 0
+      display: flex
+      margin: 10px 0 0 0
+      font-size: 22px
       .bold
         font-weight: 600
-      .tt-u
-        text-transform: uppercase
-      .unset
-        text-transform: unset
 
     &__btn
       bottom: 0
       right: 0
       position: absolute
-
-  .calculator
-    @media (max-width: 1199px)
-      width: 100%
-      max-width: 600px
-      margin: 40px auto 0 auto
-
-    &__title
-      font-size: 16px
-      font-weight: 600
-      text-transform: uppercase
-
-    &__cont
-      @media (max-width: 767px)
-        margin: 0
-      @media (max-width: 599px)
-        flex-direction: column
-
-    &__left
-      padding: 0 0 6px 0
-      box-sizing: border-box
-
-    &__input
-      width: 26px
-      background: none
-      input
-        font-size: 16px
-      span
-        font-size: 16px
-
-    &__center
-      max-width: 340px
-
-      input[type=range]
-        height: 4px
-        @media (max-width: 767px)
-          height: 8px
-
-      input[type='range']::-webkit-slider-thumb
-        width: 16px
-        height: 16px
-        top: -2px
-        @media (max-width: 767px)
-          width: 20px
-          height: 20px
-          top: -5px
-
-      .range-min
-        min-width: 40px
-        display: flex
-        &:after
-          width: auto
-          height: 100%
-          content: "кв"
-          display: block
-          margin: 0 0 0 4px
-
-      .range-min, .range-max
-        font-size: 16px
-
-    &__right
-      min-height: 18px
-      @media (max-width: 599px)
-        margin: 20px 0 0 0
-      span
-        font-size: 16px

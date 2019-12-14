@@ -32,10 +32,12 @@
       position: unset
 
   &__address
+    max-width: 348px
     height: 120px
     display: flex
-    @media (max-width: 1199px)
-      display: none
+    justify-content: space-between
+    @media (max-width: 899px)
+      max-width: 100%
 
     &__info
       height: 100%
@@ -46,6 +48,7 @@
 
     &__title
       font-size: 16px
+      font-weight: 600
       text-transform: uppercase
 
     &__p
@@ -84,12 +87,15 @@
       align-items: center
       justify-content: space-between
       max-width: 420px
+      @media (max-width: 767px)
+        max-width: 100%
       @media (max-width: 599px)
         flex-direction: column
 
     &__input-cont
-      width: 190px
+      min-width: 190px
       height: 32px
+      margin: 0 20px 0 0
       display: flex
       align-items: center
       background: #FFF
@@ -112,7 +118,13 @@
     &__btn
       min-width: 176px
       @media (max-width: 599px)
-        margin: 12px 0 0 0
+        width: 80%
+        max-width: 260px
+        height: 46px
+        margin: 20px auto 0 auto
+        font-size: 24px
+        font-weight: 400
+        line-height: 46px
 
     &__p
       margin: 8px 0 0 0
@@ -121,4 +133,7 @@
       font-size: 11px
       @media (max-width: 599px)
         width: 100%
+        margin: 14px 0 0 0
+        max-width: 220px
+        font-size: 18px
         text-align: center

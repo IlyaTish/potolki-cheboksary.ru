@@ -1,4 +1,5 @@
 .calculations
+  p.calculations__p Выезжаем сразу!<br>Оставьте заявку здесь
   .calculations__right
     .calculations__img-cont
       img.calculations__img.lozad(data-src='assets/images/calculation.jpg')
@@ -8,15 +9,16 @@
       .calculations__example
         h3.calculations__example__title Пример:
         p.calculations__example__p Матовый потолок в кухню<br>с установкой люстры
-        a.calculations__example__btn Посмотреть примеры
+        a.calculations__example__btn.popup-with-move-anim(href='#popup-example') Посмотреть примеры
         p.calculations__example__p.calculations__example__p--second Стандартные квартиры<br>в Чебоксарах
 
   .calculations__left
     .calculations__cont.calculations__cont--second
-      h2.calculations__title.calculations__title--second Акция! До конца месяца!
-      .calculations__subtitle.square Гипоаллергенное полотно MSD ..... <span class='red'>199<span> р./м<sup>2</sup>
+      h2.calculations__title.calculations__title--second.square.square--large Акция! До конца месяца!
+      .calculations__subtitle Гипоаллергенное полотно MSD ..... <span class='red'>199&nbsp;</span>р./м<sup>2</sup>
       .calculations__desc
-        p.calculations__desc__p Потолочный плинтус в подарок!
-        p.calculations__desc__p Обработка углов в подарок!
-        p.calculations__desc__p Глянцевое полотно по цене сатинового
-        p.calculations__desc__p Без швов!
+        p.calculations__desc__p.square Потолочный плинтус<span class='bold'>&nbsp;в&nbsp;подарок!</span>
+        p.calculations__desc__p.square Обработка углов<span class='bold'>&nbsp;в&nbsp;подарок!</span>
+        p.calculations__desc__p.square Глянцевое полотно по цене сатинового
+        p.calculations__desc__p.square Без швов!
+        a.calculations__desc__btn.popup-with-move-anim.btn(href='#popup') Оставить заявку

@@ -4,7 +4,7 @@
   background: $gray
   box-sizing: border-box
   @media (max-width: 599px)
-    padding: 16px
+    padding: 16px 16px 60px 16px
 
   &__row
     display: flex
@@ -27,20 +27,18 @@
 
   &__cont
     margin: 20px 0 0 0
-    display: grid
-    grid-gap: 60px
-    grid-template-columns: 1fr 1fr 1fr
-    @media (max-width: 979px)
-      grid-gap: 40px
-      grid-template-columns: 1fr 1fr
+    display: flex
+    justify-content: space-between
     @media (max-width: 599px)
-      grid-gap: 20px
-      grid-template-columns: 1fr
+      margin: 0
 
   &__article
-    width: 100%
+    width: 100% !important
+    max-width: 362px
     display: flex
     flex-direction: column
+    @media (max-width: 599px)
+      max-width: 100%
 
   &__img-cont
     min-height: 200px
@@ -71,3 +69,8 @@
     transition: .2s
     &:hover, &:focus, &:active
       color: lighten($red, 20%)
+
+  .nav
+    display: none
+    @media (max-width: 599px)
+      display: flex

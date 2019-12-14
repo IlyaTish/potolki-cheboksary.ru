@@ -1,13 +1,19 @@
 .footer
+  max-height: 242px
   display: flex
   justify-content: space-between
   margin: 40px 0 0 0
   padding: 20px 30px 80px 30px
   background: $green
   box-sizing: border-box
+  @media (max-width: 1199px)
+    max-height: none
   @media (max-width: 899px)
     padding: 20px 30px 40px 30px
     flex-direction: column
+  @media (max-width: 599px)
+    padding: 20px 16px 40px 16px
+    flex-direction: row
 
   &__left
     display: flex
@@ -16,15 +22,21 @@
   &__logo
     width: 140px
     margin: 0 0 20px 0
+    @media (max-width: 599px)
+      width: 100px
 
   &__text
     color: #FFF
     font-size: 16px
+    @media (max-width: 599px)
+      font-size: 10px
 
   &__center
     @media (max-width: 899px)
       margin: 16px 0 0 0
       border-top: 2px solid #16583C
+    @media (max-width: 599px)
+      display: none
 
     &__img
       width: 48px
@@ -60,8 +72,6 @@
       .footer__col
         &:first-of-type
           margin: 16px 0 0 0
-    @media (max-width: 599px)
-      flex-direction: column
 
   &__col
     min-width: 220px
@@ -69,8 +79,6 @@
     margin: 0 0 0 26px
     @media (max-width: 1199px)
       margin: 26px 0 0 26px
-    @media (max-width: 599px)
-      margin: 26px 0 0 0
 
   &__right
     display: flex
@@ -82,11 +90,18 @@
       margin: 20px 0 0 0
       text-align: left
       border-top: 2px solid #16583C
+    @media (max-width: 599px)
+      margin: 0
+      padding: 0
+      border: none
+      text-align: right
 
   &__city
     color: #FFF
     font-size: 20px
     font-weight: 600
+    @media (max-width: 599px)
+      font-size: 14px
 
   &__phone
     display: flex
@@ -100,9 +115,17 @@
       text-decoration: underline
     @media (max-width: 899px)
       justify-content: flex-start
+    @media (max-width: 599px)
+      font-size: 14px
+      justify-content: flex-end
 
   &__btn
     margin: 20px 0 0 0
     @media (max-width: 899px)
       height: 42px
       line-height: 42px
+    @media (max-width: 599px)
+      min-width: 160px
+      height: 32px
+      line-height: 32px
+      font-size: 12px
